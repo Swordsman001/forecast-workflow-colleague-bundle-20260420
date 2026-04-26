@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nonstandard-forecast-rollforward/cell_instructions.schema.json",
+  "title": "Cell Instructions",
+  "type": "object",
+  "required": [
+    "workbook",
+    "main_modeling_sheet",
+    "generated_by",
+    "source_workbook_hash",
+    "workbook_map_hash",
+    "forecast_basis_hash",
+    "evidence_store_hash",
+    "instructions"
+  ],
+  "properties": {
+    "workbook": {
+      "type": "string"
+    },
+    "main_modeling_sheet": {
+      "type": "string"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "source_workbook_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "workbook_map_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "forecast_basis_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_store_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cell_instructions_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instructions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/instruction"
+      }
+    }
+  },
+  "$defs": {
+    "instruction": {
+      "type": "object",
+      "required": [
+        "instruction_id",
+        "sheet",
+        "cell",
+        "row_id",
+        "year",
+        "write_type",
+        "role",
+        "allowed"
+      ],
+      "properties": {
+        "instruction_id": {
+          "type": "string"
+        },
+        "sheet": {
+          "type": "string"
+        },
+        "cell": {
+          "type": "string"
+        },
+        "row_id": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "write_type": {
+          "type": "string",
+          "enum": [
+            "value",
+            "formula",
+            "verification_target"
+          ]
+        },
+        "value_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {},
+        "formula_template": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_basis_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role": {
+          "type": "string"
+        },
+        "review_flag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allowed": {
+          "type": "boolean"
+        },
+        "formula_preserved": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

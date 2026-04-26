@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude.local/nonstandard-forecast-rollforward/artifact_hashes.schema.json",
+  "title": "Artifact Hashes",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_workbook_hash",
+    "workbook_map_hash",
+    "forecast_basis_hash",
+    "evidence_store_hash",
+    "cell_instructions_hash"
+  ],
+  "properties": {
+    "source_workbook_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workbook_map_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "forecast_basis_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_store_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cell_instructions_hash": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

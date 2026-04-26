@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nonstandard-forecast-rollforward/forecast_basis.schema.json",
+  "title": "Forecast Basis",
+  "type": "object",
+  "required": [
+    "company",
+    "cutoff_date",
+    "reported_year",
+    "target_window",
+    "language",
+    "completeness_audit",
+    "facts",
+    "assumptions",
+    "segment_assumption_cards"
+  ],
+  "properties": {
+    "company": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cutoff_date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reported_year": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_window": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "completeness_audit": {
+      "type": "object",
+      "required": [
+        "passed"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "missing_segments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_years": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_margin_logic": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/factItem"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assumptionItem"
+      }
+    },
+    "segment_assumption_cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/segmentCard"
+      }
+    },
+    "consolidated_logic": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "factItem": {
+      "type": "object",
+      "required": [
+        "key",
+        "value",
+        "evidence_items"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {},
+        "source_ref": {
+          "type": "string"
+        },
+        "evidence_items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidenceItem"
+          }
+        },
+        "confidence": {
+          "type": "string"
+        }
+      }
+    },
+    "assumptionItem": {
+      "type": "object",
+      "required": [
+        "key",
+        "value"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {},
+        "basis_type": {
+          "type": "string"
+        },
+        "source_ref": {
+          "type": "string"
+        },
+        "review_flag": {
+          "type": "string"
+        }
+      }
+    },
+    "segmentCard": {
+      "type": "object",
+      "required": [
+        "segment",
+        "year",
+        "metric",
+        "value",
+        "driver_form",
+        "volume_logic",
+        "asp_logic",
+        "share_logic",
+        "margin_logic",
+        "kill_conditions",
+        "evidence_items"
+      ],
+      "properties": {
+        "segment": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "value": {},
+        "unit": {
+          "type": "string"
+        },
+        "driver_form": {
+          "type": "string"
+        },
+        "volume_logic": {
+          "$ref": "#/$defs/logicObject"
+        },
+        "asp_logic": {
+          "$ref": "#/$defs/logicObject"
+        },
+        "share_logic": {
+          "$ref": "#/$defs/logicObject"
+        },
+        "margin_logic": {
+          "$ref": "#/$defs/logicObject"
+        },
+        "weak_assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "kill_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_ref": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "review_flag": {
+          "type": "string"
+        },
+        "evidence_items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidenceItem"
+          }
+        }
+      }
+    },
+    "logicObject": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "mechanism"
+          ],
+          "properties": {
+            "direction": {
+              "type": "string"
+            },
+            "mechanism": {
+              "type": "string"
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "evidence_items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/evidenceItem"
+              }
+            },
+            "value": {}
+          }
+        }
+      ]
+    },
+    "evidenceItem": {
+      "type": "object",
+      "required": [
+        "claim",
+        "source_ref",
+        "source_tier",
+        "source_label"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_tier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

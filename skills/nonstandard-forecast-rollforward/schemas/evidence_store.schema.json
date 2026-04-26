@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude.local/nonstandard-forecast-rollforward/evidence_store.schema.json",
+  "title": "Evidence Store Line",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fact_id",
+    "company",
+    "period",
+    "metric",
+    "source_type",
+    "confidence"
+  ],
+  "properties": {
+    "fact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1
+    },
+    "period": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metric": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
